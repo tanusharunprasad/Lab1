@@ -1,0 +1,20 @@
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        ListNode* dummy = new ListNode(0);  // Dummy node
+        dummy->next = head;
+        ListNode* prev = dummy, *curr = head;
+
+        while (curr) {
+            if (curr->val == val) {
+                prev->next = curr->next;  // Remove current node
+                delete curr;  // Free memory
+            } else {
+                prev = curr;  // Move prev only if no deletion
+            }
+            curr = prev->next;  // Move to next node
+        }
+        
+        return dummy->next;
+    }
+};
